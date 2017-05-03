@@ -11,13 +11,14 @@ def searchRank(sites_db, query, user_cat, num_results):
 		if not auth: continue
 		num_match = 0
 		#Cuantas keywords de la query coinciden con las keywords del archivo?
-		for word in (query.split" "):
+		for word in (query.split(" ")):
 			num_match += keywords.count(word)
 		#Calculamos el ptje del archivo
 		accuracy = num_match / len(keywords)
 		file_score = accuracy * pond[user_cat]
 		results.append( (file_score, nombre, desc, url) )
 
+	results.sort(key=lambda x: x[0], reverse=True)
 	return results
 
 
