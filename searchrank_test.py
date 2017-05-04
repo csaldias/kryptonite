@@ -11,5 +11,8 @@ for line in file:
 
 	sites_db.append( (nom, desc, url, keywords, pond, auth) )
 
-results = searchRank(sites_db, "fisica electromagnetismo", 1, 10)
-print(results)
+query_str = "fisica electromagnetismo"
+print('Querying "'+query_str+'"...')
+results = searchRank(sites_db, query_str, 1, 10)
+for result in results:
+	print(result)

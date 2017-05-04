@@ -1,5 +1,5 @@
 from sys import stderr as stderr
-import numpy as np
+
 '''
 Función searchRank: brinda los principales resultados para el usuario, en orden de relevancia
 
@@ -17,7 +17,7 @@ def searchRank(sites_db, query, user_cat, num_results):
 
 		#Calculamos el ptje del archivo
 		accuracy = num_match / len(keywords)
-		file_score = accuracy * pond[user_cat]
+		file_score = round(accuracy * pond[user_cat], 3)
 
 		results.append( (file_score, nombre, desc, url) )
 
