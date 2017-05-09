@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Portal de Aprendizaje</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+    <link rel='stylesheet prefetch' href='https://cdn.gitcdn.link/cdn/angular/bower-material/v1.1.1/angular-material.css'>
+    <link rel='stylesheet prefetch' href='https://material.angularjs.org/1.1.1/docs.css'>
+</head>
+
+<body>
+<div ng-controller="registroController" ng-app="portalAprendizaje">
+<div layout="column" layout-align="center center">
+    <md-card layout="column" layout-align="center center">
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-headline">Regístrate en el Portal de Aprendizaje</span>
+            </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+            <form>
+                <div layout="column">
+                    <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
+                        <div>
+                            <md-input-container>
+                                <label>Nombre de Usuario</label>
+                                <input required ng-model="user.usuario">
+                                <div ng-messages="user.usuario.$error">
+                                    <div ng-message="required">Debes ingresar un nombre de usuario.</div>
+                                </div>
+                            </md-input-container>
+                            <md-input-container>
+                                <label>Email</label>
+                                <input required ng-pattern="/^.+@.+\..+$/" ng-model="user.email" type="email">
+                                <div ng-messages="user.email.$error">
+                                    <div ng-message-exp="['required', 'pattern']">
+                                        Debes ingresar un email válido.
+                                    </div>
+                                </div>
+                            </md-input-container>
+                            <md-input-container>
+                                <label>Contraseña</label>
+                                <input required ng-model="user.password" type="password">
+                                <div ng-messages="user.password.$error">
+                                    <div ng-message="required">Debes ingresar una contraseña.</div>
+                                </div>
+                            </md-input-container>
+                            <md-input-container>
+                                <label>Rol USM</label>
+                                <input required ng-model="user.rol">
+                                <div ng-messages="user.rol.$error">
+                                    <div ng-message="required">Debes ingresar tu Rol USM.</div>
+                                </div>
+                            </md-input-container>
+                        </div>
+                    </md-content>
+                    <md-content layout-padding>
+                            <div layout-gt-sm="column">
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label>Nombre</label>
+                                    <input required ng-model="user.nombre">
+                                    <div ng-messages="user.nombre.$error">
+                                        <div ng-message="required">Debes ingresar tu nombre.</div>
+                                    </div>
+                                </md-input-container>
+
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label>Apellido</label>
+                                    <input required ng-model="user.apellido">
+                                    <div ng-messages="user.apellido.$error">
+                                        <div ng-message="required">Debes ingresar tu apellido.</div>
+                                    </div>
+                                </md-input-container>
+
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label>Carrera</label>
+                                    <md-select required ng-model="user.carrera">
+                                        <md-option ng-repeat="carrera in carreras" value="{{carrera.nombre}}">
+                                            {{carrera.nombre}}
+                                        </md-option>
+                                        <div ng-messages="user.carrera.$error">
+                                            <div ng-message="required">Debes especificar tu carrera.</div>
+                                        </div>
+                                    </md-select>
+                                </md-input-container>
+                            </div>
+                    </md-content>
+                    <md-button type="submit" class="md-raised md-primary" ng-click="registrarUsuario()">Registrar</md-button>
+                </div>
+            </form>
+        </md-card-content>
+    </md-card>
+</div>
+</div>
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.min.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js'></script>
+<script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-114/svg-assets-cache.js'></script>
+<script src='https://cdn.gitcdn.link/cdn/angular/bower-material/v1.1.1/angular-material.js'></script>
+<script src="js/register.js"></script>
+</body>
+</html>

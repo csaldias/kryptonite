@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Portal de Aprendizaje</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+    <link rel='stylesheet prefetch' href='https://cdn.gitcdn.link/cdn/angular/bower-material/v1.1.1/angular-material.css'>
+    <link rel='stylesheet prefetch' href='https://material.angularjs.org/1.1.1/docs.css'>
+    <link rel='stylesheet' href='/css/encuesta.css'>
+</head>
+
+<body>
+<div ng-controller="encuestaController" layout="column" max-width= 50% layout-align="center center" ng-cloak="" class="md-inline-form inputdemoBasicUsage" ng-app="portalAprendizaje">
+    <md-card>
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-headline">Encuesta</span>
+                <span class="md-subhead">Para continuar, debes responder la siguiente encuesta.</span>
+            </md-card-title-text>
+        </md-card-title>
+        <md-divider ng-if="!$last"></md-divider>
+        <md-card-content>
+            <form>
+            <div layout="column">
+                <section layout="row" layout-sm="column" layout-align="space-between center" layout-wrap>
+                    <div class="label">1. Cuando aprendo...</div>
+                    <div layout="column" layout-align="center end">
+                    <div layout="row" layout-align="space-between center">
+                        <span>Me gusta vivir sensaciones</span>
+                        <md-select ng-model="pregunta.p1.a" placeholder="" class="md-no-underline">
+                            <md-option value="1">1</md-option>
+                            <md-option value="2">2</md-option>
+                            <md-option value="3">3</md-option>
+                            <md-option value="4">4</md-option>
+                        </md-select>
+                    </div>
+                    <div layout="row" layout-align="space-between center">
+                        <span>Me gusta pensar sobre ideas</span>
+                        <md-select ng-model="pregunta.p1.b" placeholder="" class="md-no-underline">
+                            <md-option value="1">1</md-option>
+                            <md-option value="2">2</md-option>
+                            <md-option value="3">3</md-option>
+                            <md-option value="4">4</md-option>
+                        </md-select>
+                    </div>
+                    <div layout="row" layout-align="space-between center">
+                        <span>Me gusta estar haciendo cosas</span>
+                        <md-select ng-model="pregunta.p1.c" placeholder="" class="md-no-underline">
+                            <md-option value="1">1</md-option>
+                            <md-option value="2">2</md-option>
+                            <md-option value="3">3</md-option>
+                            <md-option value="4">4</md-option>
+                        </md-select>
+                    </div>
+                    <div layout="row" layout-align="space-between center">
+                        <span>Me gusta observar y escuchar</span>
+                        <md-select ng-model="pregunta.p1.d" placeholder="" class="md-no-underline">
+                            <md-option value="1">1</md-option>
+                            <md-option value="2">2</md-option>
+                            <md-option value="3">3</md-option>
+                            <md-option value="4">4</md-option>
+                        </md-select>
+                    </div>
+                    </div>
+                </section>
+                <md-divider ng-if="!$last"></md-divider>
+                <section layout="row" layout-sm="column" layout-align="space-between center" layout-wrap>
+                    <div class="label">2. Aprendo mejor cuando...</div>
+                    <div layout="column" layout-align="center end">
+                    <div layout="row" layout-align="space-between center">
+                        <span>Escucho y observo cuidadosamente</span>
+                        <md-select ng-model="pregunta.p2.a" placeholder="" class="md-no-underline">
+                            <md-option value="1">1</md-option>
+                            <md-option value="2">2</md-option>
+                            <md-option value="3">3</md-option>
+                            <md-option value="4">4</md-option>
+                        </md-select>
+                    </div>
+                    <div layout="row" layout-align="space-between center">
+                        <span>Confío en el pensamiento lógico</span>
+                        <md-select ng-model="pregunta.p2.b" placeholder="" class="md-no-underline">
+                            <md-option value="1">1</md-option>
+                            <md-option value="2">2</md-option>
+                            <md-option value="3">3</md-option>
+                            <md-option value="4">4</md-option>
+                        </md-select>
+                    </div>
+                    <div layout="row" layout-align="space-between center">
+                        <span>Confío en mi intuición y sentimientos</span>
+                        <md-select ng-model="pregunta.p2.c" placeholder="" class="md-no-underline">
+                            <md-option value="1">1</md-option>
+                            <md-option value="2">2</md-option>
+                            <md-option value="3">3</md-option>
+                            <md-option value="4">4</md-option>
+                        </md-select>
+                    </div>
+                    <div layout="row" layout-align="space-between center">
+                        <span>Trabajo duro para lograr hacer las cosas</span>
+                        <md-select ng-model="pregunta.p2.d" placeholder="" class="md-no-underline">
+                            <md-option value="1">1</md-option>
+                            <md-option value="2">2</md-option>
+                            <md-option value="3">3</md-option>
+                            <md-option value="4">4</md-option>
+                        </md-select>
+                    </div>
+                    </div>
+                </section>
+                <md-divider ng-if="!$last"></md-divider>
+                <section layout="row" layout-sm="column" layout-align="space-between center" layout-wrap>
+                    <div class="label">3. Cuando estoy aprendiendo...</div>
+                    <div layout="column" layout-align="center end">
+                    <div layout="row" layout-align="space-between center">
+                        <span>Tiendo a usar el razonamiento</span>
+                        <md-select ng-model="pregunta.p3.a" placeholder="" class="md-no-underline">
+                            <md-option value="1">1</md-option>
+                            <md-option value="2">2</md-option>
+                            <md-option value="3">3</md-option>
+                            <md-option value="4">4</md-option>
+                        </md-select>
+                    </div>
+                    <div layout="row" layout-align="space-between center">
+                        <span>Soy responsable con lo que hago</span>
+                        <md-select ng-model="pregunta.p3.b" placeholder="" class="md-no-underline">
+                            <md-option value="1">1</md-option>
+                            <md-option value="2">2</md-option>
+                            <md-option value="3">3</md-option>
+                            <md-option value="4">4</md-option>
+                        </md-select>
+                    </div>
+                    <div layout="row" layout-align="space-between center">
+                        <span>Soy callado y reservado</span>
+                        <md-select ng-model="pregunta.p3.c" placeholder="" class="md-no-underline">
+                            <md-option value="1">1</md-option>
+                            <md-option value="2">2</md-option>
+                            <md-option value="3">3</md-option>
+                            <md-option value="4">4</md-option>
+                        </md-select>
+                    </div>
+                    <div layout="row" layout-align="space-between center">
+                        <span>Tengo fuertes sensaciones y reacciones</span>
+                        <md-select ng-model="pregunta.p3.d" placeholder="" class="md-no-underline">
+                            <md-option value="1">1</md-option>
+                            <md-option value="2">2</md-option>
+                            <md-option value="3">3</md-option>
+                            <md-option value="4">4</md-option>
+                        </md-select>
+                    </div>
+                    </div>
+                </section>
+                <md-divider ng-if="!$last"></md-divider>
+                <section layout="row" layout-sm="column" layout-align="space-between center" layout-wrap>
+                    <div class="label">4. Yo aprendo...</div>
+                    <div layout="column" layout-align="center end">
+                    <div layout="row" layout-align="space-between center">
+                        <span>Sintiendo</span>
+                        <md-select ng-model="pregunta.p4.a" placeholder="" class="md-no-underline">
+                            <md-option value="1">1</md-option>
+                            <md-option value="2">2</md-option>
+                            <md-option value="3">3</md-option>
+                            <md-option value="4">4</md-option>
+                        </md-select>
+                    </div>
+                    <div layout="row" layout-align="space-between center">
+                        <span>Haciendo</span>
+                        <md-select ng-model="pregunta.p4.b" placeholder="" class="md-no-underline">
+                            <md-option value="1">1</md-option>
+                            <md-option value="2">2</md-option>
+                            <md-option value="3">3</md-option>
+                            <md-option value="4">4</md-option>
+                        </md-select>
+                    </div>
+                    <div layout="row" layout-align="space-between center">
+                        <span>Observando</span>
+                        <md-select ng-model="pregunta.p4.c" placeholder="" class="md-no-underline">
+                            <md-option value="1">1</md-option>
+                            <md-option value="2">2</md-option>
+                            <md-option value="3">3</md-option>
+                            <md-option value="4">4</md-option>
+                        </md-select>
+                    </div>
+                    <div layout="row" layout-align="space-between center">
+                        <span>Pensando</span>
+                        <md-select ng-model="pregunta.p4.d" placeholder="" class="md-no-underline">
+                            <md-option value="1">1</md-option>
+                            <md-option value="2">2</md-option>
+                            <md-option value="3">3</md-option>
+                            <md-option value="4">4</md-option>
+                        </md-select>
+                    </div>
+                    </div>
+                </section>
+                <md-divider ng-if="!$last"></md-divider>
+                <section layout="row" layout-sm="column" layout-align="space-between center" layout-wrap>
+                    <div class="label">5. Cuando aprendo...</div>
+                    <div layout="column" layout-align="center end">
+                    <div layout="row" layout-align="space-between center">
+                        <span>Estoy abierto a nuevas experiencias</span>
+                        <md-select ng-model="pregunta.p5.a" placeholder="" class="md-no-underline">
+                            <md-option value="1">1</md-option>
+                            <md-option value="2">2</md-option>
+                            <md-option value="3">3</md-option>
+                            <md-option value="4">4</md-option>
+                        </md-select>
+                    </div>
+                    <div layout="row" layout-align="space-between center">
+                        <span>Observo todos los aspectos del asunto</span>
+                        <md-select ng-model="pregunta.p5.b" placeholder="" class="md-no-underline">
+                            <md-option value="1">1</md-option>
+                            <md-option value="2">2</md-option>
+                            <md-option value="3">3</md-option>
+                            <md-option value="4">4</md-option>
+                        </md-select>
+                    </div>
+                    <div layout="row" layout-align="space-between center">
+                        <span>Me gusta analizar las cosas, desomponerlas en sus partes</span>
+                        <md-select ng-model="pregunta.p5.c" placeholder="" class="md-no-underline">
+                            <md-option value="1">1</md-option>
+                            <md-option value="2">2</md-option>
+                            <md-option value="3">3</md-option>
+                            <md-option value="4">4</md-option>
+                        </md-select>
+                    </div>
+                    <div layout="row" layout-align="space-between center">
+                        <span>Me gusta probar e intentar hacer las cosas</span>
+                        <md-select ng-model="pregunta.p5.d" placeholder="" class="md-no-underline">
+                            <md-option value="1">1</md-option>
+                            <md-option value="2">2</md-option>
+                            <md-option value="3">3</md-option>
+                            <md-option value="4">4</md-option>
+                        </md-select>
+                    </div>
+                    </div>
+                </section>
+                <md-divider ng-if="!$last"></md-divider>
+                <section layout="row" layout-sm="column" layout-align="space-between center" layout-wrap>
+                    <div class="label">6. Cuando estoy aprendiendo...</div>
+                    <div layout="column" layout-align="center end">
+                    <div layout="row" layout-align="space-between center">
+                        <span>Soy una perosna observadora</span>
+                        <md-select ng-model="pregunta.p6.a" placeholder="" class="md-no-underline">
+                            <md-option value="1">1</md-option>
+                            <md-option value="2">2</md-option>
+                            <md-option value="3">3</md-option>
+                            <md-option value="4">4</md-option>
+                        </md-select>
+                    </div>
+                    <div layout="row" layout-align="space-between center">
+                        <span>Soy una persona activa</span>
+                        <md-select ng-model="pregunta.p6.b" placeholder="" class="md-no-underline">
+                            <md-option value="1">1</md-option>
+                            <md-option value="2">2</md-option>
+                            <md-option value="3">3</md-option>
+                            <md-option value="4">4</md-option>
+                        </md-select>
+                    </div>
+                    <div layout="row" layout-align="space-between center">
+                        <span>Soy una persona intuitiva</span>
+                        <md-select ng-model="pregunta.p6.c" placeholder="" class="md-no-underline">
+                            <md-option value="1">1</md-option>
+                            <md-option value="2">2</md-option>
+                            <md-option value="3">3</md-option>
+                            <md-option value="4">4</md-option>
+                        </md-select>
+                    </div>
+                    <div layout="row" layout-align="space-between center">
+                        <span>Soy una persona lógica</span>
+                        <md-select ng-model="pregunta.p6.d" placeholder="" class="md-no-underline">
+                            <md-option value="1">1</md-option>
+                            <md-option value="2">2</md-option>
+                            <md-option value="3">3</md-option>
+                            <md-option value="4">4</md-option>
+                        </md-select>
+                    </div>
+                    </div>
+                </section>
+                <md-divider ng-if="!$last"></md-divider>
+                <section layout="row" layout-sm="column" layout-align="space-between center" layout-wrap>
+                    <div class="label">7. Yo aprendo mejor de...</div>
+                    <div layout="column" layout-align="center end">
+                    <div layout="row" layout-align="space-between center">
+                        <span>La observación</span>
+                        <md-select ng-model="pregunta.p7.a" placeholder="" class="md-no-underline">
+                            <md-option value="1">1</md-option>
+                            <md-option value="2">2</md-option>
+                            <md-option value="3">3</md-option>
+                            <md-option value="4">4</md-option>
+                        </md-select>
+                    </div>
+                    <div layout="row" layout-align="space-between center">
+                        <span>La relación con otras personas</span>
+                        <md-select ng-model="pregunta.p7.b" placeholder="" class="md-no-underline">
+                            <md-option value="1">1</md-option>
+                            <md-option value="2">2</md-option>
+                            <md-option value="3">3</md-option>
+                            <md-option value="4">4</md-option>
+                        </md-select>
+                    </div>
+                    <div layout="row" layout-align="space-between center">
+                        <span>las teorías racionales</span>
+                        <md-select ng-model="pregunta.p7.c" placeholder="" class="md-no-underline">
+                            <md-option value="1">1</md-option>
+                            <md-option value="2">2</md-option>
+                            <md-option value="3">3</md-option>
+                            <md-option value="4">4</md-option>
+                        </md-select>
+                    </div>
+                    <div layout="row" layout-align="space-between center">
+                        <span>La oportunidad de probar y practicar</span>
+                        <md-select ng-model="pregunta.p7.d" placeholder="" class="md-no-underline">
+                            <md-option value="1">1</md-option>
+                            <md-option value="2">2</md-option>
+                            <md-option value="3">3</md-option>
+                            <md-option value="4">4</md-option>
+                        </md-select>
+                    </div>
+                    </div>
+                </section>
+                <md-divider ng-if="!$last"></md-divider>
+                <section layout="row" layout-sm="column" layout-align="space-between center" layout-wrap>
+                    <div class="label">8. Cuando aprendo...</div>
+                    <div layout="column" layout-align="center end">
+                    <div layout="row" layout-align="space-between center">
+                        <span>Me gusta ver los resultados de mi trabajo</span>
+                        <md-select ng-model="pregunta.p8.a" placeholder="" class="md-no-underline">
+                            <md-option value="1">1</md-option>
+                            <md-option value="2">2</md-option>
+                            <md-option value="3">3</md-option>
+                            <md-option value="4">4</md-option>
+                        </md-select>
+                    </div>
+                    <div layout="row" layout-align="space-between center">
+                        <span>Me gustan las ideas y las teorías</span>
+                        <md-select ng-model="pregunta.p8.b" placeholder="" class="md-no-underline">
+                            <md-option value="1">1</md-option>
+                            <md-option value="2">2</md-option>
+                            <md-option value="3">3</md-option>
+                            <md-option value="4">4</md-option>
+                        </md-select>
+                    </div>
+                    <div layout="row" layout-align="space-between center">
+                        <span>Me tomo mi tiempo antes de actuar</span>
+                        <md-select ng-model="pregunta.p8.c" placeholder="" class="md-no-underline">
+                            <md-option value="1">1</md-option>
+                            <md-option value="2">2</md-option>
+                            <md-option value="3">3</md-option>
+                            <md-option value="4">4</md-option>
+                        </md-select>
+                    </div>
+                    <div layout="row" layout-align="space-between center">
+                        <span>Me siento personalmente involucrado con las cosas</span>
+                        <md-select ng-model="pregunta.p8.d" placeholder="" class="md-no-underline">
+                            <md-option value="1">1</md-option>
+                            <md-option value="2">2</md-option>
+                            <md-option value="3">3</md-option>
+                            <md-option value="4">4</md-option>
+                        </md-select>
+                    </div>
+                    </div>
+                </section>
+                <md-divider ng-if="!$last"></md-divider>
+                <section layout="row" layout-sm="column" layout-align="space-between center" layout-wrap>
+                    <div class="label">9. Aprendo mejor cuando...</div>
+                    <div layout="column" layout-align="center end">
+                    <div layout="row" layout-align="space-between center">
+                        <span>Confío en mis observaciones</span>
+                        <md-select ng-model="pregunta.p9.a" placeholder="" class="md-no-underline">
+                            <md-option value="1">1</md-option>
+                            <md-option value="2">2</md-option>
+                            <md-option value="3">3</md-option>
+                            <md-option value="4">4</md-option>
+                        </md-select>
+                    </div>
+                    <div layout="row" layout-align="space-between center">
+                        <span>Confío en mis sentimientos</span>
+                        <md-select ng-model="pregunta.p9.b" placeholder="" class="md-no-underline">
+                            <md-option value="1">1</md-option>
+                            <md-option value="2">2</md-option>
+                            <md-option value="3">3</md-option>
+                            <md-option value="4">4</md-option>
+                        </md-select>
+                    </div>
+                    <div layout="row" layout-align="space-between center">
+                        <span>Puedo probar por mi cuenta</span>
+                        <md-select ng-model="pregunta.p9.c" placeholder="" class="md-no-underline">
+                            <md-option value="1">1</md-option>
+                            <md-option value="2">2</md-option>
+                            <md-option value="3">3</md-option>
+                            <md-option value="4">4</md-option>
+                        </md-select>
+                    </div>
+                    <div layout="row" layout-align="space-between center">
+                        <span>confío en mis ideas</span>
+                        <md-select ng-model="pregunta.p9.d" placeholder="" class="md-no-underline">
+                            <md-option value="1">1</md-option>
+                            <md-option value="2">2</md-option>
+                            <md-option value="3">3</md-option>
+                            <md-option value="4">4</md-option>
+                        </md-select>
+                    </div>
+                    </div>
+                </section>
+                <md-divider ng-if="!$last"></md-divider>
+                <section layout="row" layout-sm="column" layout-align="space-between center" layout-wrap>
+                    <div class="label">10. Cuando estoy aprendiendo...</div>
+                    <div layout="column" layout-align="center end">
+                    <div layout="row" layout-align="space-between center">
+                        <span>Soy una persona reservada</span>
+                        <md-select ng-model="pregunta.p10.a" placeholder="" class="md-no-underline">
+                            <md-option value="1">1</md-option>
+                            <md-option value="2">2</md-option>
+                            <md-option value="3">3</md-option>
+                            <md-option value="4">4</md-option>
+                        </md-select>
+                    </div>
+                    <div layout="row" layout-align="space-between center">
+                        <span>Soy una persona receptiva</span>
+                        <md-select ng-model="pregunta.p10.b" placeholder="" class="md-no-underline">
+                            <md-option value="1">1</md-option>
+                            <md-option value="2">2</md-option>
+                            <md-option value="3">3</md-option>
+                            <md-option value="4">4</md-option>
+                        </md-select>
+                    </div>
+                    <div layout="row" layout-align="space-between center">
+                        <span>Soy una persona responsable</span>
+                        <md-select ng-model="pregunta.p10.c" placeholder="" class="md-no-underline">
+                            <md-option value="1">1</md-option>
+                            <md-option value="2">2</md-option>
+                            <md-option value="3">3</md-option>
+                            <md-option value="4">4</md-option>
+                        </md-select>
+                    </div>
+                    <div layout="row" layout-align="space-between center">
+                        <span>Soy una persona racional</span>
+                        <md-select ng-model="pregunta.p10.d" placeholder="" class="md-no-underline">
+                            <md-option value="1">1</md-option>
+                            <md-option value="2">2</md-option>
+                            <md-option value="3">3</md-option>
+                            <md-option value="4">4</md-option>
+                        </md-select>
+                    </div>
+                    </div>
+                </section>
+                <md-divider ng-if="!$last"></md-divider>
+                <section layout="row" layout-sm="column" layout-align="space-between center" layout-wrap>
+                    <div class="label">11. Cuando aprendo...</div>
+                    <div layout="column" layout-align="center end">
+                    <div layout="row" layout-align="space-between center">
+                        <span>Me involucro</span>
+                        <md-select ng-model="pregunta.p11.a" placeholder="" class="md-no-underline">
+                            <md-option value="1">1</md-option>
+                            <md-option value="2">2</md-option>
+                            <md-option value="3">3</md-option>
+                            <md-option value="4">4</md-option>
+                        </md-select>
+                    </div>
+                    <div layout="row" layout-align="space-between center">
+                        <span>Me gusta observar</span>
+                        <md-select ng-model="pregunta.p11.b" placeholder="" class="md-no-underline">
+                            <md-option value="1">1</md-option>
+                            <md-option value="2">2</md-option>
+                            <md-option value="3">3</md-option>
+                            <md-option value="4">4</md-option>
+                        </md-select>
+                    </div>
+                    <div layout="row" layout-align="space-between center">
+                        <span>Evalúo las cosas</span>
+                        <md-select ng-model="pregunta.p11.c" placeholder="" class="md-no-underline">
+                            <md-option value="1">1</md-option>
+                            <md-option value="2">2</md-option>
+                            <md-option value="3">3</md-option>
+                            <md-option value="4">4</md-option>
+                        </md-select>
+                    </div>
+                    <div layout="row" layout-align="space-between center">
+                        <span>Me gusta ser activo</span>
+                        <md-select ng-model="pregunta.p11.d" placeholder="" class="md-no-underline">
+                            <md-option value="1">1</md-option>
+                            <md-option value="2">2</md-option>
+                            <md-option value="3">3</md-option>
+                            <md-option value="4">4</md-option>
+                        </md-select>
+                    </div>
+                    </div>
+                </section>
+                <md-divider ng-if="!$last"></md-divider>
+                <section layout="row" layout-sm="column" layout-align="space-between center" layout-wrap>
+                    <div class="label">12. Aprendo mejor cuando...</div>
+                    <div layout="column" layout-align="center end">
+                    <div layout="row" layout-align="space-between center">
+                        <span>Analizo ideas</span>
+                        <md-select ng-model="pregunta.p12.a" placeholder="" class="md-no-underline">
+                            <md-option value="1">1</md-option>
+                            <md-option value="2">2</md-option>
+                            <md-option value="3">3</md-option>
+                            <md-option value="4">4</md-option>
+                        </md-select>
+                    </div>
+                    <div layout="row" layout-align="space-between center">
+                        <span>Soy receptivo y abierto</span>
+                        <md-select ng-model="pregunta.p12.b" placeholder="" class="md-no-underline">
+                            <md-option value="1">1</md-option>
+                            <md-option value="2">2</md-option>
+                            <md-option value="3">3</md-option>
+                            <md-option value="4">4</md-option>
+                        </md-select>
+                    </div>
+                    <div layout="row" layout-align="space-between center">
+                        <span>Soy cuidadoso</span>
+                        <md-select ng-model="pregunta.p12.c" placeholder="" class="md-no-underline">
+                            <md-option value="1">1</md-option>
+                            <md-option value="2">2</md-option>
+                            <md-option value="3">3</md-option>
+                            <md-option value="4">4</md-option>
+                        </md-select>
+                    </div>
+                    <div layout="row" layout-align="space-between center">
+                        <span>Soy práctico</span>
+                        <md-select ng-model="pregunta.p12.d" placeholder="" class="md-no-underline">
+                            <md-option value="1">1</md-option>
+                            <md-option value="2">2</md-option>
+                            <md-option value="3">3</md-option>
+                            <md-option value="4">4</md-option>
+                        </md-select>
+                    </div>
+                    </div>
+                </section>
+                <md-divider ng-if="!$last"></md-divider>
+                <md-button  type="submit" class="md-raised md-primary" ng-click="obtenerCat()">Enviar Encuesta</md-button>
+            </div>
+                </form>
+        </md-card-content>
+    </md-card>
+</div>
+
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.min.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js'></script>
+<script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-114/svg-assets-cache.js'></script>
+<script src='https://cdn.gitcdn.link/cdn/angular/bower-material/v1.1.1/angular-material.js'></script>
+<script src="/js/encuesta.js"></script>
+</body>
+</html>
