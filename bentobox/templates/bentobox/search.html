@@ -1,0 +1,12 @@
+<h1>Buscar en Bentobox</h1>
+
+<form action="{% url 'bentobox:results' %}" method="post">
+{% csrf_token %}
+<input type="text" name="search_query" id="search_query" value="Qué deseas buscar?" />
+<select id="tipo" name="tipo">
+  {% for id, value in tipos %}
+  <option value="{{id}}">{{value}}</option>
+  {% endfor %}
+</select>
+<input type="submit" value="Buscar" />
+</form>

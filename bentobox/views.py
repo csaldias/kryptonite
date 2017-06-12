@@ -6,7 +6,17 @@ def index(request):
     return HttpResponse("Este es el index de bentobox.")
 
 def searchPage(request):
-    return HttpResponse("Este es la página del buscador.")
+    tipos_contenido = (
+    ('sd', 'Sin Definir'),
+    ('ad', 'Adaptador'),
+    ('di', 'Divergente'),
+    ('co', 'Convergente'),
+    ('as', 'Asimilador'),
+    )
+    context = {'tipos': tipos_contenido}
+    return render(request, 'bentobox/search.html', context)
 
 def searchResults(request):
-    return HttpResponse("Esta es la interfaz de resutlados de searchRank.")
+
+    context = {'search_query': request.POST["search_query"], 'tipo': request.POST["tipo"]}
+    return render(request, 'bentobox/results.html', context)
