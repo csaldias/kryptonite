@@ -11,8 +11,11 @@ class Contenido(models.Model):
     )
     link = models.URLField(max_length=1024)
     desc = models.CharField(max_length=200)
-    #TODO: Faltan los TAG's
+    #TODO: Faltan los TAG's!
     clasif = models.CharField(max_length=2,
                               choices = tipos_contenido,
                               default = 'sd')
     valid = models.BooleanField()
+
+    def __str__(self):
+        return self.link
