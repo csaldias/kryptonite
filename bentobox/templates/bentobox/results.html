@@ -1,4 +1,16 @@
 <h1>Resultados</h1>
 
-{{ search_query }}</p>
-{{ tipo }}
+<table>
+  <tr>
+    <th>Puntaje</th>
+    <th>URL</th>
+    <th>Descripción</th>
+  </tr>
+  {% for ptje, url, desc in resultados %}
+  <tr>
+    <th>{{ ptje }}</th>
+    <th>{{ url }}</th>
+    <th>{{ desc }}</th>
+  </tr>
+  {% endfor %}
+</table>
