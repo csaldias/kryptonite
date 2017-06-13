@@ -1,10 +1,20 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-
 from .models import Contenido
+
 def index(request):
-    return HttpResponse("Este es el index de bentobox.")
+    return render(request, 'bentobox/login.html')
+
+def register(request):
+    tipos_contenido = (
+    ('ad', 'Adaptador'),
+    ('di', 'Divergente'),
+    ('co', 'Convergente'),
+    ('as', 'Asimilador'),
+    )
+    context = {'tipos': tipos_contenido}
+    return render(request, 'bentobox/register.html', context)
 
 def searchPage(request):
     tipos_contenido = (
