@@ -12,7 +12,16 @@ def index(request):
 def register(request):
     if request.POST:
         #TODO: Register process
-        user = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
+        nombre_usuario = request.POST['user']
+        contrasena = request.POST['pass']
+        nombre = request.POST['name']
+        tipo = request.POST['tipo']
+
+        user = User.objects.create_user(nombre_usuario, 'a@a.com', contrasena)
+        user.first_name = nombre
+        user.categoria.tipo_aprendizaje = tipo
+        user.save()
+
         print(request.POST)
 
     tipos_contenido = (
