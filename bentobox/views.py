@@ -1,6 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate
+from django.contrib.auth import login as auth_login
 
 from .models import Contenido
 
@@ -16,13 +18,12 @@ def register(request):
         contrasena = request.POST['pass']
         nombre = request.POST['name']
         tipo = request.POST['tipo']
-
         user = User.objects.create_user(nombre_usuario, 'a@a.com', contrasena)
         user.first_name = nombre
         user.categoria.tipo_aprendizaje = tipo
         user.save()
-
         print(request.POST)
+        return render(request, 'bentobox/login.html')
 
     tipos_contenido = (
     ('ad', 'Adaptador'),
@@ -35,21 +36,37 @@ def register(request):
 
 def login(request):
     if request.POST:
-        #TODO: Login process
+        user = request.POST['user']
+        passwd = request.POST['pass']
         print(request.POST)
-
+        user = authenticate(request, username=user, password=passwd)
+        if user is not None:
+            auth_login(request, user)
+            return redirect('/bentobox/search')
+        else:
+            #Return an 'invalid login' error message.
+            return render(request, 'bentobox/login.html')
     return render(request, 'bentobox/login.html')
 
 
 def searchPage(request):
-    tipos_contenido = (
-    ('ad', 'Adaptador'),
-    ('di', 'Divergente'),
-    ('co', 'Convergente'),
-    ('as', 'Asimilador'),
-    )
-    context = {'tipos': tipos_contenido}
-    return render(request, 'bentobox/search.html', context)
+    print(request.user)
+    if request.user.is_authenticated:
+        #El usuario está autenticado
+        tipos_contenido = (
+        ('ad', 'Adaptador'),
+        ('di', 'Divergente'),
+        ('co', 'Convergente'),
+        ('as', 'Asimilador'),
+        )
+        context = {'tipos': tipos_contenido}
+        return render(request, 'bentobox/search.html', context)
+    else:
+        #El usuario NO está autenticado
+        return redirect('/bentobox/login')
+
+
+
 
 def searchResults(request):
     search_query = request.POST["search_query"]
