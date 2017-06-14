@@ -7,7 +7,7 @@ app_name = 'bentobox'
 admin.site.site_header = 'Panel de Administracion'
 
 urlpatterns = [
-    url(r'^$', views.login, name='index'),
+    url(r'^$', views.index, name='index'),
     url(r'^login/$', views.login, name='login'),
     url(r'^search/$', views.searchPage, name='search'),
     url(r'^register/$', views.register, name='register'),

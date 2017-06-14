@@ -23,7 +23,7 @@ def register(request):
         user.categoria.tipo_aprendizaje = tipo
         user.save()
         print(request.POST)
-        return render(request, 'bentobox/login.html')
+        return render(request, 'bentobox/login.html', {'msg': 'Registro exitoso.'})
 
     tipos_contenido = (
     ('ad', 'Adaptador'),
@@ -42,10 +42,10 @@ def login(request):
         user = authenticate(request, username=user, password=passwd)
         if user is not None:
             auth_login(request, user)
-            return redirect('/bentobox/search')
+            return redirect('bentobox:search')
         else:
             #Return an 'invalid login' error message.
-            return render(request, 'bentobox/login.html')
+            return render(request, 'bentobox/login.html', {'msg': 'Usuario o contraseña inválidos.'})
     return render(request, 'bentobox/login.html')
 
 
@@ -63,7 +63,7 @@ def searchPage(request):
         return render(request, 'bentobox/search.html', context)
     else:
         #El usuario NO está autenticado
-        return redirect('/bentobox/login')
+        return redirect('bentobox:login')
 
 
 

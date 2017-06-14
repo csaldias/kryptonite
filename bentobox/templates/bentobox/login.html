@@ -11,6 +11,11 @@
     <h1>Iniciar Sesión</h1>
     <h3>Bentobox</h3>
 </hgroup>
+{% if msg %}
+<hgroup>
+    <h3>{{ msg }}</h3>
+</hgroup>
+{% endif %}
 <form action="{% url 'bentobox:login' %}" method="post">
   {% csrf_token %}
     <div class="group">
