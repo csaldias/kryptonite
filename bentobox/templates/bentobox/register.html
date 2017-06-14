@@ -10,7 +10,8 @@
 <hgroup>
     <h1>Registrar en Bentobox</h1>
 </hgroup>
-<form action="/login/process" method="post">
+<form action="{% url 'bentobox:register' %}" method="post">
+  {% csrf_token %}
     <div class="group">
         <input type="text" name="user"><span class="highlight"></span><span class="bar"></span>
         <label>Usuario</label>

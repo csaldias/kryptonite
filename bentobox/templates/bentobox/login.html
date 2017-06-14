@@ -11,19 +11,20 @@
     <h1>Iniciar Sesión</h1>
     <h3>Bentobox</h3>
 </hgroup>
-<form action="/login/process" method="post">
+<form action="{% url 'bentobox:login' %}" method="post">
+  {% csrf_token %}
     <div class="group">
-        <input type="text" name="user[name]"><span class="highlight"></span><span class="bar"></span>
+        <input type="text" name="user"><span class="highlight"></span><span class="bar"></span>
         <label>Usuario</label>
     </div>
     <div class="group">
-        <input type="password" name="user[password]"><span class="highlight"></span><span class="bar"></span>
+        <input type="password" name="pass"><span class="highlight"></span><span class="bar"></span>
         <label>Contraseña</label>
     </div>
     <input type="submit" value="Ingresar" class="button buttonBlue">
             <!-- <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div> -->
     </input>
-    <a href="register">
+    <a href="{% url 'bentobox:register' %}">
         <button type="button" class="button buttonGreen">Registrar
             <!-- <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div> -->
         </button>

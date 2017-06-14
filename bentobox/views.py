@@ -1,12 +1,20 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.contrib.auth.models import User
 
 from .models import Contenido
 
 def index(request):
+    #El index debiera ser el search page.
+    #Si no está logeado, que se inicie sesión.
     return render(request, 'bentobox/login.html')
 
 def register(request):
+    if request.POST:
+        #TODO: Register process
+        user = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
+        print(request.POST)
+
     tipos_contenido = (
     ('ad', 'Adaptador'),
     ('di', 'Divergente'),
@@ -15,6 +23,14 @@ def register(request):
     )
     context = {'tipos': tipos_contenido}
     return render(request, 'bentobox/register.html', context)
+
+def login(request):
+    if request.POST:
+        #TODO: Login process
+        print(request.POST)
+
+    return render(request, 'bentobox/login.html')
+
 
 def searchPage(request):
     tipos_contenido = (
