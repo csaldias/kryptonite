@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login
+from django.contrib.auth import logout as auth_logout
 
 from .models import Contenido
 
@@ -47,6 +48,11 @@ def login(request):
             #Return an 'invalid login' error message.
             return render(request, 'bentobox/login.html', {'msg': 'Usuario o contraseña inválidos.'})
     return render(request, 'bentobox/login.html')
+
+def logout(request):
+    print("Logout")
+    auth_logout(request)
+    return redirect('bentobox:login')
 
 
 def searchPage(request):
