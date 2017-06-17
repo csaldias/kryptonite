@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Portal de Aprendizaje</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+
+    <link rel='stylesheet prefetch' href='https://cdn.gitcdn.link/cdn/angular/bower-material/v1.1.1/angular-material.css'>
+    <link rel='stylesheet prefetch' href='https://material.angularjs.org/1.1.1/docs.css'>
+
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+<div ng-controller="AppCtrl" ng-cloak="" class="fabToolbardemoBasicUsage" ng-app="MyApp">
+    <md-toolbar class="md-hue-2">
+        <div class="md-toolbar-tools" ng-controller="AppCtrl as ctrl">
+            <md-button class="md-icon-button" aria-label="Settings">
+                <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+            </md-button>
+            <h2>
+                <span>Portal de Aprendizaje</span>
+            </h2>
+            <span flex></span>
+            <md-menu>
+                <md-button class="md-icon-button" aria-label="More" ng-click="ctrl.openMenu($mdOpenMenu, $event)">
+                    <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon>
+                </md-button>
+                <md-menu-content width="3">
+                    <md-menu-item>
+                        <md-button ng-href="/perfil">
+                            Editar Perfil
+                        </md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                        <md-button disabled="disabled" ng-click="ctrl.checkVoicemail()">
+                            Panel de Administración
+                        </md-button>
+                    </md-menu-item>
+                    <md-menu-divider></md-menu-divider>
+                    <md-menu-item>
+                        <md-button ng-href="/logout">
+                            Salir
+                        </md-button>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+        </div>
+    </md-toolbar>
+    <md-content class="md-padding" layout-xs="column" layout="row">
+        <div flex-xs flex-gt-xs="50" layout="column">
+            <md-card>
+                <img ng-src="{{tarjeta1}}" class="md-card-image" alt="Washed Out">
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">Carga Eléctrica y Campo Eléctrico</span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content>
+                    <p>
+                        En esta unidad, estudiaremos la naturaleza de la carga eléctrica y cómo sabemos que ésta se
+                        conserva. Además, estudiaremos cómo se cargan eléctricamente los objetos, cómo usar la ley de
+                        Coulomb para calcular la fuerza eléctrica entre cargas, la diferencia entre fuerza eléctrica
+                        y campo eléctrico, cómo calcular el campo eléctrico generado por un conjunto de cargas, cómo
+                        usar la idea de las líneas de campo eléctrico para visualizar e interpretar los campos
+                        eléctricos, y como calcular las propiedades de los dipolos eléctricos.
+                    </p>
+                </md-card-content>
+                <md-card-actions layout="row" layout-align="end center">
+                    <md-button>Descargar</md-button>
+                    <md-button>Más</md-button>
+                </md-card-actions>
+            </md-card>
+            <md-card>
+                <img ng-src="{{tarjeta2}}" class="md-card-image" alt="Washed Out">
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">Ley de Gauss</span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content>
+                    <p>
+                        En esta unidad, aprenderemos cómo determinar la cantidad de carga dentro de una superficie
+                        cerrada examinando el campo eléctrico sobre la superficie; cuál es el significado de flujo
+                        eléctrico y cómo se calcula; cómo la ley de Gauss relaciona al flujo eléctrico a través de una
+                        superficie cerrada con la carga encerrada por la superficie; cómo usar la ley de Gauss para
+                        calcular el campo eléctrico debido a una distribución simétrica de la carga; y dónde se localiza
+                        la carga en un conductor cargado.
+                    </p>
+                </md-card-content>
+                <md-card-actions layout="row" layout-align="end center">
+                    <md-button>Descargar</md-button>
+                    <md-button>Más</md-button>
+                </md-card-actions>
+            </md-card>
+        </div>
+        <div flex-xs flex-gt-xs="50" layout="column">
+            <md-card>
+                <img ng-src="{{tarjeta3}}" class="md-card-image" alt="Washed Out">
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">Potencial Eléctrico</span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content>
+                    <p>
+                        En esta unidad, aprenderemos a calcular la energía potencial eléctrica de un conjunto de cargas;
+                        el significado e importancia del potencial eléctrico; A determinar el potencial eléctrico
+                        que un conjunto de cargas produce en un punto en el espacio; el uso de las superficies
+                        equipotenciales para visualizar la forma en que varía el potencial eléctrico en el espacio; y a
+                        emplear el potencial eléctrico para calcular el campo eléctrico.
+                    </p>
+                </md-card-content>
+                <md-card-actions layout="row" layout-align="end center">
+                    <md-button>Descargar</md-button>
+                    <md-button>Más</md-button>
+                </md-card-actions>
+            </md-card>
+            <md-card>
+                <md-card-header>
+                    <md-card-avatar>
+                        <img src="img/maximiliano-rivera.png"/>
+                    </md-card-avatar>
+                    <md-card-header-text>
+                        <span class="md-title">Max Rivera</span>
+                        <span class="md-subhead">Departamento de Física</span>
+                    </md-card-header-text>
+                </md-card-header>
+                <img ng-src="{{anuncio}}" class="md-card-image" alt="Washed Out">
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">Anuncio</span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content>
+                    <p>
+                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt
+                        ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo
+                        dolores et ea rebum. Stet clita kasd gubergren, no seaest Lorem ipsum dolor sit amet.
+                    </p>
+                </md-card-content>
+            </md-card>
+        </div>
+        <div flex-xs flex-gt-xs="50" layout="column">
+            <md-card>
+                <img ng-src="{{tarjeta4}}" class="md-card-image" alt="Washed Out">
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">Capacitancia y Dieléctricos</span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content>
+                    <p>
+                        En esta unidad, estudiaremos la naturaleza de los capacitores y la forma de calcular una
+                        cantidad que mide su capacidad para almacenar carga. Además, estudiaremos cómo analizar
+                        capacitores conectados en una red; A calcular la cantidad de energía almacenada en un capacitor;
+                         y qué son los dieléctricos y cómo forman capacitores más eficaces.
+                    </p>
+                </md-card-content>
+                <md-card-actions layout="row" layout-align="end center">
+                    <md-button>Descargar</md-button>
+                    <md-button>Más</md-button>
+                </md-card-actions>
+            </md-card>
+            <md-card>
+                <img ng-src="{{tarjeta5}}" class="md-card-image" alt="Washed Out">
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">Corriente, Resistencia y Fuerza Electromotriz</span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content>
+                    <p>
+                        En esta unidad, aprenderemos el significado de la corriente eléctrica y cómo se desplaza
+                        la carga en un conductor. Además, estudiaremos el significado de la resistividad y la
+                        conductividad eléctrica de una sustancia; Cómo calcular la resistencia de un conductor a
+                        partir de sus dimensiones y su resistividad; El modo en que una fuerza electromotriz (fem)
+                        hace posible que la corriente fluya en un circuito; Y cómo efectuar cálculos que implican
+                        energía y potencia en circuitos.
+                    </p>
+                </md-card-content>
+                <md-card-actions layout="row" layout-align="end center">
+                    <md-button>Descargar</md-button>
+                    <md-button>Más</md-button>
+                </md-card-actions>
+            </md-card>
+
+        </div>
+    </md-content>
+
+</div>
+
+<!--
+Copyright 2016 Google Inc. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that can be foundin the LICENSE file at http://material.angularjs.org/HEAD/license.
+-->
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.min.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js'></script>
+<script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-114/svg-assets-cache.js'></script>
+<script src='https://cdn.gitcdn.link/cdn/angular/bower-material/v1.1.1/angular-material.js'></script>
+
+<script src="js/index.js"></script>
+
+
+
+
+</body>
+</html>
