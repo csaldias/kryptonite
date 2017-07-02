@@ -45,7 +45,6 @@ def login(request):
             auth_login(request, user)
             return redirect('bentobox:search')
         else:
-            #Return an 'invalid login' error message.
             return render(request, 'bentobox/login.html', {'msg': 'Usuario o contraseña inválidos.'})
     return render(request, 'bentobox/login.html')
 
@@ -66,7 +65,7 @@ def searchPage(request):
         ('as', 'Asimilador'),
         )
         context = {'tipos': tipos_contenido}
-        return render(request, 'bentobox/search.html', context)
+        return render(request, 'bentobox/search2.html', context)
     else:
         #El usuario NO está autenticado
         return redirect('bentobox:login')
@@ -110,4 +109,4 @@ def searchResults(request):
         'tipo': tipo_user,
         'resultados': results
         }
-    return render(request, 'bentobox/results.html', context)
+    return render(request, 'bentobox/results2.html', context)

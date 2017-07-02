@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <title>Bentobox</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+
+    <link rel='stylesheet prefetch' href='https://cdn.gitcdn.link/cdn/angular/bower-material/v1.1.1/angular-material.css'>
+    <link rel='stylesheet prefetch' href='https://material.angularjs.org/1.1.1/docs.css'>
+
+    <link rel="stylesheet" href="{% static "bentobox/css/search.css" %}">
+</head>
+
+<body>
+<div ng-controller="AppCtrl" ng-cloak="" class="fabToolbardemoBasicUsage" ng-app="MyApp">
+    <md-toolbar class="md-hue-2" ng-show="!showSearch">
+        <div class="md-toolbar-tools" ng-controller="AppCtrl as ctrl">
+            <md-button class="md-icon-button" aria-label="Settings">
+                <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+            </md-button>
+            <h2>
+                <span>Bentobox</span>
+            </h2>
+            <span flex></span>
+            <md-button class="md-icon-button" aria-label="Search" ng-click="showSearch = !showSearch">
+                <ng-md-icon icon="search" style="fill: white"></ng-md-icon>
+            </md-button>
+            <md-menu>
+                <md-button class="md-icon-button" aria-label="More" ng-click="ctrl.openMenu($mdOpenMenu, $event)">
+                    <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon>
+                </md-button>
+                <md-menu-content width="3">
+                    <md-menu-item>
+                        <md-button disabled="disabled" ng-href="/perfil">
+                            Sugerir Contenido
+                        </md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                        <md-button ng-href="{% url 'admin:index' %}">
+                            Panel de Administración
+                        </md-button>
+                    </md-menu-item>
+                    <md-menu-divider></md-menu-divider>
+                    <md-menu-item>
+                        <md-button ng-href="{% url 'bentobox:logout' %}">
+                            Salir
+                        </md-button>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+        </div>
+    </md-toolbar>
+    <md-content class="md-padding" layout-xs="column" layout="row">
+      <form name="userForm" method="post" action="{% url 'bentobox:results' %}">
+        {% csrf_token %}
+        <div flex-xs flex-gt-xs="50" layout="column">
+          <md-input-container class="md-block" flex-gt-xs>
+            <label>Buscar</label>
+            <input ng-model="search_query" name="search_query" id="search_query">
+          </md-input-container>
+
+          <select id="tipo" name="tipo">
+            {% for id, value in tipos %}
+            <option value="{{id}}">{{value}}</option>
+            {% endfor %}
+          </select>
+
+          <md-button type="submit" class="md-raised md-primary">Buscar</md-button>
+        </div>
+        <div flex-xs flex-gt-xs="50" layout="column">
+        </div>
+        <div flex-xs flex-gt-xs="50" layout="column">
+
+        </div>
+    </md-content>
+
+</div>
+
+<!--
+Copyright 2016 Google Inc. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that can be foundin the LICENSE file at http://material.angularjs.org/HEAD/license.
+-->
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.min.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js'></script>
+<script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-114/svg-assets-cache.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/angular-material-icons/0.7.1/angular-material-icons.min.js'></script>
+<script src='https://cdn.gitcdn.link/cdn/angular/bower-material/v1.1.1/angular-material.js'></script>
+
+<script src="{% static "bentobox/js/search.js" %}"></script>
+
+
+
+
+</body>
+</html>
