@@ -98,7 +98,7 @@ def searchResults(request):
         elif tipo_user == "as":
             file_score = round(accuracy * contenido.clasificacion_asimilador, 3)
 
-        results.append( (file_score, contenido.link, contenido.descripcion) )
+        if file_score > 0: results.append( (file_score, contenido.link, contenido.descripcion) )
 
     #Ordenamos los resultados por puntaje desdendente, de esta forma los
     #resultados másrelevantes para el usuario se mostrarán primero.
