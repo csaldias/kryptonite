@@ -19,13 +19,14 @@
             <md-button class="md-icon-button" aria-label="Settings">
                 <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
             </md-button>
-            <h2>
+            <h1>
                 <span>Bentobox</span>
-            </h2>
+            </h1>
             <span flex></span>
-            <md-button class="md-icon-button" aria-label="Search" ng-click="showSearch = !showSearch">
-                <ng-md-icon icon="search" style="fill: white"></ng-md-icon>
-            </md-button>
+            <h4>
+                <span>Resultados de búsqueda</span>
+            </h4>
+            <span flex></span>
             <md-menu>
                 <md-button class="md-icon-button" aria-label="More" ng-click="ctrl.openMenu($mdOpenMenu, $event)">
                     <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon>
@@ -53,20 +54,25 @@
     </md-toolbar>
     <md-content class="md-padding" layout-xs="column" layout="row">
         <div flex-xs flex-gt-xs="50" layout="column">
-          <table>
-            <tr>
-              <th>Puntaje</th>
-              <th>URL</th>
-              <th>Descripción</th>
-            </tr>
-            {% for ptje, url, desc in resultados %}
-            <tr>
-              <th>{{ ptje }}</th>
-              <th>{{ url }}</th>
-              <th>{{ desc }}</th>
-            </tr>
-            {% endfor %}
-          </table>
+          {% for ptje, url, desc in resultados %}
+          <md-card md-theme="default" md-theme-watch>
+                  <md-card-title>
+                    <md-card-title-text>
+                      <span class="md-headline">{{ desc }}</span>
+                      <span class="md-subhead">{{ url }}</span>
+                      <span class="md-subhead">{{ ptje }}</span>
+                    </md-card-title-text>
+                    <md-card-title-media>
+                      <div class="md-media-sm card-media"></div>
+                    </md-card-title-media>
+                  </md-card-title>
+                  <md-card-actions layout="row" layout-align="end center">
+                    <md-button href="{{ url }}">Visitar</md-button>
+                  </md-card-actions>
+                </md-card>
+          {% empty %}
+        <h2>La búsqueda no tuvo resultados.</h2>
+                {% endfor %}
 
           <a href="{% url 'bentobox:search' %}">Realizar otra búsqueda</a>
 
@@ -80,10 +86,6 @@
 
 </div>
 
-<!--
-Copyright 2016 Google Inc. All Rights Reserved.
-Use of this source code is governed by an MIT-style license that can be foundin the LICENSE file at http://material.angularjs.org/HEAD/license.
--->
 <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js'></script>
 <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js'></script>
 <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.min.js'></script>

@@ -8,16 +8,6 @@ app.controller('AppCtrl', function($scope) {
         $mdOpenMenu(ev);
     };
     $scope.query = "";
-
-    /*$scope.buscarQuery = function () {
-        $http.post('/register/process', $scope.query)
-            .success(function (data) {
-                $window.location.href = "/";
-            })
-            .error(function (data) {
-                console.log("Error: " + data);
-            });
-    };*/
 });
 
 app.config(function($mdThemingProvider) {

@@ -23,9 +23,6 @@
                 <span>Bentobox</span>
             </h2>
             <span flex></span>
-            <md-button class="md-icon-button" aria-label="Search" ng-click="showSearch = !showSearch">
-                <ng-md-icon icon="search" style="fill: white"></ng-md-icon>
-            </md-button>
             <md-menu>
                 <md-button class="md-icon-button" aria-label="More" ng-click="ctrl.openMenu($mdOpenMenu, $event)">
                     <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon>
@@ -51,9 +48,10 @@
             </md-menu>
         </div>
     </md-toolbar>
-    <md-content class="md-padding" layout-xs="column" layout="row" layout-align="center center">
+    <md-content class="md-padding">
       <form method="post" action="{% url 'bentobox:results' %}">
         {% csrf_token %}
+        <div layout-xs="column" layout="row" layout-align="center center">
         <div>
           <md-input-container class="md-block" flex-gt-xs>
             <label>Buscar</label>
@@ -70,6 +68,7 @@
         <div>
           <md-button type="submit" class="md-raised md-primary">Buscar</md-button>
         </div>
+      </div>
     </md-content>
 
 </div>
