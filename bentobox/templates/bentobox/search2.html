@@ -29,7 +29,7 @@
                 </md-button>
                 <md-menu-content width="3">
                     <md-menu-item>
-                        <md-button disabled="disabled" ng-href="/perfil">
+                        <md-button ng-click="showAdvanced($event)">
                             Sugerir Contenido
                         </md-button>
                     </md-menu-item>
@@ -51,6 +51,13 @@
     <md-content class="md-padding">
       <form method="post" action="{% url 'bentobox:results' %}">
         {% csrf_token %}
+        {% if msg %}
+        <div layout-xs="column" layout="row" layout-align="center center">
+          <div>
+            <h3>{{ msg }}</h3>
+          </div>
+        </div>
+        {% endif %}
         <div layout-xs="column" layout="row" layout-align="center center">
         <div>
           <md-input-container class="md-block" flex-gt-xs>

@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import User
+from bentobox.models import Contenido
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
@@ -53,7 +54,6 @@ def logout(request):
     auth_logout(request)
     return redirect('bentobox:login')
 
-
 def searchPage(request):
     print(request.user)
     if request.user.is_authenticated:
@@ -69,9 +69,6 @@ def searchPage(request):
     else:
         #El usuario NO está autenticado
         return redirect('bentobox:login')
-
-
-
 
 def searchResults(request):
     search_query = request.POST["search_query"]
@@ -110,3 +107,26 @@ def searchResults(request):
         'resultados': results
         }
     return render(request, 'bentobox/results2.html', context)
+
+def sugerirContenido(request):
+    if request.POST:
+        #Agregamos el contenido sin aprobar
+        link = request.POST['link']
+        descripcion = request.POST['descripcion']
+        tags = request.POST['tags']
+
+        contenido = Contenido(link=link, descripcion=descripcion, tags=tags, aprobado=False)
+        contenido.save()
+
+        tipos_contenido = (
+        ('ad', 'Adaptador'),
+        ('di', 'Divergente'),
+        ('co', 'Convergente'),
+        ('as', 'Asimilador'),
+        )
+        print(request.POST)
+        return render(request, 'bentobox/search2.html',
+            {'msg': 'Contenido enviado! Tu contenido será revisado antes de ser aceptado en el sitio.',
+             'tipos': tipos_contenido})
+
+    return render(request, 'bentobox/dialog.html')

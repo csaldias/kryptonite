@@ -13,4 +13,5 @@ urlpatterns = [
     url(r'^search/$', views.searchPage, name='search'),
     url(r'^register/$', views.register, name='register'),
     url(r'^search/results/$', views.searchResults, name='results'),
+    url(r'^sugerir/$', views.sugerirContenido, name='sugerir'),
 ]
