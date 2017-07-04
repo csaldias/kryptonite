@@ -16,8 +16,10 @@ class CategoriasInline(admin.StackedInline):
 class UserAdmin(BaseUserAdmin):
     inlines = (CategoriasInline, )
 
+class ContenidoAdmin(admin.ModelAdmin):
+    list_filter = ('aprobado',)
+
 # Re-register UserAdmin
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
-
-admin.site.register(Contenido)
+admin.site.register(Contenido, ContenidoAdmin)
