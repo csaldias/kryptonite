@@ -28,6 +28,11 @@
                     <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon>
                 </md-button>
                 <md-menu-content width="3">
+                  <md-menu-item>
+                      <md-button ng-disabled="true">
+                          Tipo: {{ tipo_user }}
+                      </md-button>
+                  </md-menu-item>
                     <md-menu-item>
                         <md-button ng-click="showAdvanced($event)">
                             Sugerir Contenido
@@ -35,7 +40,7 @@
                     </md-menu-item>
                     <md-menu-item>
                         <md-button ng-href="{% url 'admin:index' %}">
-                            Panel de Administración
+                            Administración
                         </md-button>
                     </md-menu-item>
                     <md-menu-divider></md-menu-divider>
@@ -65,13 +70,13 @@
             <input ng-model="search_query" name="search_query" id="search_query">
           </md-input-container>
         </div>
-        <div>
+        <!--<div>
           <select id="tipo" name="tipo">
             {% for id, value in tipos %}
             <option value="{{id}}">{{value}}</option>
             {% endfor %}
           </select>
-        </div>
+        </div>-->
         <div>
           <md-button type="submit" class="md-raised md-primary">Buscar</md-button>
         </div>

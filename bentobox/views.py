@@ -24,7 +24,7 @@ def register(request):
         user.first_name = nombre
         user.categoria.tipo_aprendizaje = tipo
         user.save()
-        print(request.POST)
+
         return render(request, 'bentobox/login.html', {'msg': 'Registro exitoso.'})
 
     tipos_contenido = (
@@ -40,7 +40,7 @@ def login(request):
     if request.POST:
         user = request.POST['user']
         passwd = request.POST['pass']
-        print(request.POST)
+
         user = authenticate(request, username=user, password=passwd)
         if user is not None:
             auth_login(request, user)
@@ -50,12 +50,12 @@ def login(request):
     return render(request, 'bentobox/login.html')
 
 def logout(request):
-    print("Logout")
+
     auth_logout(request)
     return redirect('bentobox:login')
 
 def searchPage(request):
-    print(request.user)
+
     if request.user.is_authenticated:
         #El usuario está autenticado
         tipos_contenido = (
@@ -64,7 +64,12 @@ def searchPage(request):
         ('co', 'Convergente'),
         ('as', 'Asimilador'),
         )
-        context = {'tipos': tipos_contenido}
+
+        for tipo_ab, tipo_str in tipos_contenido:
+            if tipo_ab == request.user.categoria.tipo_aprendizaje:
+                tipo_user = tipo_str
+
+        context = {'tipos': tipos_contenido,'tipo_user': tipo_user}
         return render(request, 'bentobox/search2.html', context)
     else:
         #El usuario NO está autenticado
@@ -72,7 +77,7 @@ def searchPage(request):
 
 def searchResults(request):
     search_query = request.POST["search_query"]
-    tipo_user = request.POST["tipo"]
+    tipo_user = request.user.categoria.tipo_aprendizaje
 
     #Aquí va la lógica de searchRank
     results = []
@@ -98,7 +103,7 @@ def searchResults(request):
         if file_score > 0: results.append( (file_score, contenido.link, contenido.descripcion) )
 
     #Ordenamos los resultados por puntaje desdendente, de esta forma los
-    #resultados másrelevantes para el usuario se mostrarán primero.
+    #resultados más relevantes para el usuario se mostrarán primero.
     results.sort(key=lambda x: x[0], reverse=True)
 
     context = {
@@ -124,9 +129,14 @@ def sugerirContenido(request):
         ('co', 'Convergente'),
         ('as', 'Asimilador'),
         )
-        print(request.POST)
+
+        for tipo_ab, tipo_str in tipos_contenido:
+            if tipo_ab == request.user.categoria.tipo_aprendizaje:
+                tipo_user = tipo_str
+
+        
         return render(request, 'bentobox/search2.html',
             {'msg': 'Contenido enviado! Tu contenido será revisado antes de ser aceptado en el sitio.',
-             'tipos': tipos_contenido})
+             'tipos': tipos_contenido, 'tipo_user': tipo_user})
 
     return render(request, 'bentobox/dialog.html')

@@ -35,6 +35,8 @@ app.controller('AppCtrl', function($scope, $mdDialog) {
       $mdDialog.cancel();
     };
 
+    $scope.tags_list = [];
+
     $scope.answer = function(answer) {
       $mdDialog.hide(answer);
     };
