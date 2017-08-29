@@ -1,0 +1,42 @@
+<md-dialog aria-label="Sugerir Contenido">
+  <form ng-cloak method="post" action="/bentobox/sugerir/">
+    {% csrf_token %}
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Sugerir Contenido</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+      <div class="md-dialog-content">
+        <h2>Sugiere nuevo contenido para el sitio</h2>
+        <md-input-container class="md-block" flex-gt-xs>
+          <label>Link</label>
+          <input ng-model="link" name="link" id="link">
+        </md-input-container>
+        <md-input-container class="md-block" flex-gt-xs>
+          <label>Descripción</label>
+          <input ng-model="descripcion" name="descripcion" id="descripcion">
+        </md-input-container>
+        <md-input-container class="md-block" flex-gt-xs>
+          <label>Tags (separados por comas)</label>
+          <input ng-model="tags" name="tags" id="tags">
+        </md-input-container>
+          <!--<md-chips ng-model="tags_list" placeholder="Agrega tags...">
+          <input ng-model="tags" name="tags" id="tags">
+        </md-chips>-->
+      </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+      <span flex></span>
+      <md-button type="submit">
+        Enviar
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

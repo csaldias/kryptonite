@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import User
+from bentobox.models import Contenido
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
@@ -23,7 +24,7 @@ def register(request):
         user.first_name = nombre
         user.categoria.tipo_aprendizaje = tipo
         user.save()
-        print(request.POST)
+
         return render(request, 'bentobox/login.html', {'msg': 'Registro exitoso.'})
 
     tipos_contenido = (
@@ -39,24 +40,20 @@ def login(request):
     if request.POST:
         user = request.POST['user']
         passwd = request.POST['pass']
-        print(request.POST)
+
         user = authenticate(request, username=user, password=passwd)
         if user is not None:
             auth_login(request, user)
             return redirect('bentobox:search')
         else:
-            #Return an 'invalid login' error message.
             return render(request, 'bentobox/login.html', {'msg': 'Usuario o contraseña inválidos.'})
     return render(request, 'bentobox/login.html')
 
 def logout(request):
-    print("Logout")
     auth_logout(request)
     return redirect('bentobox:login')
 
-
 def searchPage(request):
-    print(request.user)
     if request.user.is_authenticated:
         #El usuario está autenticado
         tipos_contenido = (
@@ -65,18 +62,20 @@ def searchPage(request):
         ('co', 'Convergente'),
         ('as', 'Asimilador'),
         )
-        context = {'tipos': tipos_contenido}
-        return render(request, 'bentobox/search.html', context)
+
+        for tipo_ab, tipo_str in tipos_contenido:
+            if tipo_ab == request.user.categoria.tipo_aprendizaje:
+                tipo_user = tipo_str
+
+        context = {'tipos': tipos_contenido,'tipo_user': tipo_user}
+        return render(request, 'bentobox/search2.html', context)
     else:
         #El usuario NO está autenticado
         return redirect('bentobox:login')
 
-
-
-
 def searchResults(request):
     search_query = request.POST["search_query"]
-    tipo_user = request.POST["tipo"]
+    tipo_user = request.user.categoria.tipo_aprendizaje
 
     #Aquí va la lógica de searchRank
     results = []
@@ -99,10 +98,10 @@ def searchResults(request):
         elif tipo_user == "as":
             file_score = round(accuracy * contenido.clasificacion_asimilador, 3)
 
-        results.append( (file_score, contenido.link, contenido.descripcion) )
+        if file_score > 0: results.append( (file_score, contenido.link, contenido.descripcion) )
 
     #Ordenamos los resultados por puntaje desdendente, de esta forma los
-    #resultados másrelevantes para el usuario se mostrarán primero.
+    #resultados más relevantes para el usuario se mostrarán primero.
     results.sort(key=lambda x: x[0], reverse=True)
 
     context = {
@@ -110,4 +109,31 @@ def searchResults(request):
         'tipo': tipo_user,
         'resultados': results
         }
-    return render(request, 'bentobox/results.html', context)
+    return render(request, 'bentobox/results2.html', context)
+
+def sugerirContenido(request):
+    if request.POST:
+        #Agregamos el contenido sin aprobar
+        link = request.POST['link']
+        descripcion = request.POST['descripcion']
+        tags = request.POST['tags']
+
+        contenido = Contenido(link=link, descripcion=descripcion, tags=tags, aprobado=False)
+        contenido.save()
+
+        tipos_contenido = (
+        ('ad', 'Adaptador'),
+        ('di', 'Divergente'),
+        ('co', 'Convergente'),
+        ('as', 'Asimilador'),
+        )
+
+        for tipo_ab, tipo_str in tipos_contenido:
+            if tipo_ab == request.user.categoria.tipo_aprendizaje:
+                tipo_user = tipo_str
+
+        return render(request, 'bentobox/search2.html',
+            {'msg': 'Contenido enviado! Tu contenido será revisado antes de ser aceptado en el sitio.',
+             'tipos': tipos_contenido, 'tipo_user': tipo_user})
+
+    return render(request, 'bentobox/dialog.html')
