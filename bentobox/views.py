@@ -50,12 +50,10 @@ def login(request):
     return render(request, 'bentobox/login.html')
 
 def logout(request):
-
     auth_logout(request)
     return redirect('bentobox:login')
 
 def searchPage(request):
-
     if request.user.is_authenticated:
         #El usuario está autenticado
         tipos_contenido = (
@@ -134,7 +132,6 @@ def sugerirContenido(request):
             if tipo_ab == request.user.categoria.tipo_aprendizaje:
                 tipo_user = tipo_str
 
-        
         return render(request, 'bentobox/search2.html',
             {'msg': 'Contenido enviado! Tu contenido será revisado antes de ser aceptado en el sitio.',
              'tipos': tipos_contenido, 'tipo_user': tipo_user})
